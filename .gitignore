@@ -114,16 +114,10 @@ Session.vim
 .netrwhist
 *~
 
-# Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
-/vendor/bundle
-
-/app/assets
-/db/migrate/*
-/db/seeds/*
-/doc
-/script
-/test
-/vendor
+/app/assets/
 /config/database.yml
+/db/migrate/
+/db/seeds/
+/script/
+/test/
+/vendor/
