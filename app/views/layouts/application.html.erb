@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>会議室予約</title>
+  <%= stylesheet_link_tag    "/stylesheets/application", :media => "all" %>
+  <%= stylesheet_link_tag    "/stylesheets/schedule", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <header class="l-header">
+    <h1 class="c-heading1">
+      <%= link_to '会議室予約', :root %>
+    </h1>
+    <nav class="global-nav">
+      <ul class="c-nav">
+        <li class="c-nav__item">
+          <%= link_to_unless_current '予約検索', :root, class: 'c-nav__target' %>
+        </li>
+        <li class="c-nav__item">
+          <%= link_to_unless_current '予約登録', :new, class: 'c-nav__target' %>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <%= yield %>
+
+  <footer class="l-footer">
+    <small class="global-copyright">
+      sizucca.com &copy;
+    </small>
+  </footer>
+
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "/javascripts/vendor/html5shiv-printshiv.min.js" %>
+    <%= javascript_include_tag "/javascripts/vendor/jquery-1.11.3.min.js" %>
+  <![endif]-->
+  <!--[if gte IE 9]><!-->
+    <%= javascript_include_tag "/javascripts/vendor/jquery-2.1.4.min.js" %>
+  <!--<![endif]-->
+  <%= javascript_include_tag "/javascripts/vendor/rails" %>
+  <%= javascript_include_tag "/javascripts/schedule" %>
+</body>
+</html>

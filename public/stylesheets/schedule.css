@@ -1,0 +1,288 @@
+@charset "utf-8";
+
+/* search-table
+================================================== */
+.search-table {
+  margin-bottom: 15px;
+}
+/* result-count
+================================================== */
+.result-count {
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #f7f9f9;
+}
+.result-count b {
+  font-weight: bold;
+}
+.result-count__num {
+  color: #2980b9;
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+/* user-name-kana
+================================================== */
+.user-name-kana {
+  color: #7f8c8d;
+  font-size: 13px;
+  font-size: 1.3rem;
+}
+/* status-inactive
+================================================== */
+.status-inactive {
+  color: #bdc3c7;
+  text-decoration: line-through;
+}
+.status-inactive * {
+  color: #bdc3c7;
+}
+/* result-table
+================================================== */
+.result-table {
+  margin-top: 10px;
+  border: 2px solid #d7dbdd;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.result-table th {
+  padding: 0.4em 0.8em;
+  border-bottom: 1px solid #d7dbdd;
+  border-left: 1px solid #d7dbdd;
+  width: 20%;
+  font-size: 13px;
+  font-size: 1.3rem;
+  text-align: left;
+  vertical-align: middle;
+  background-color: #f7f9f9;
+}
+.result-table td {
+  padding: 0.4em 0.8em;
+  border-bottom: 1px solid #d7dbdd;
+  border-left: 1px solid #d7dbdd;
+  vertical-align: middle;
+}
+.result-table__form {
+  border-right: 1px solid #d7dbdd;
+  width: 10%;
+  text-align: center;
+}
+/* form-table
+================================================== */
+.form-table__th.form-table__th {
+  position: relative;
+  padding-left: 3.5em;
+  font-weight: bold;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.form-table__label {
+  display: inline-block;
+  position: absolute;
+  left: 0.8em;
+  padding: 0 0.3em;
+  border-radius: 2px;
+  height: 1.6em;
+  color: #ffffff;
+  font-weight: normal;
+  font-size: 12px;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+  line-height: 1.7;
+  background-color: #95a5a6;
+}
+.form-table__label.form-table__label--required {
+  background-color: #e74c3c;
+}
+.form-table__limit {
+  display: block;
+  color: #7f8c8d;
+  font-weight: normal;
+  font-size: 12px;
+  font-size: 1.2rem;
+}
+.form-table__limit:before {
+  content: "※";
+}
+.form-table__line + .form-table__line {
+  margin-top: 0.8em;
+}
+/* submit-th
+================================================== */
+.submit-th.submit-th {
+  padding-top: 1em;
+  border-bottom: none;
+  text-align: center;
+}
+.submit-th__btn {
+  width: 14em;
+}
+/* flash-message
+================================================== */
+.flash-message {
+  margin-bottom: 15px;
+}
+/* error-message
+================================================== */
+.error-message {
+  margin-bottom: 15px;
+}
+.error-message_list {
+  display: inline-block;
+  margin-top: 10px;
+  padding-left: 2em;
+  list-style-type: disc;
+}
+.error-message_list li {
+  margin-bottom: 5px;
+  text-align: left;
+  list-style-type: inherit;
+}
+/* table & field_with_errors
+================================================== */
+.field_with_errors {
+  display: inline;
+}
+.field_with_errors select,
+.field_with_errors input[type="text"],
+.field_with_errors textarea,
+.field_with_errors ~ select {
+  border-color: #e64c30;
+  background-color: #fefae6;
+}
+.field_with_errors ~ .form-error:after {
+  display: inline-block;
+  margin-left: 0.2em;
+  color: #e64c30;
+  font-weight: bold;
+  content: "error!";
+}
+/* anime-happy
+================================================== */
+.anime-happy {
+  position: relative;
+  top: 0;
+  -webkit-animation: anime-happy 1s linear infinite alternate;
+  animation: anime-happy 1s linear infinite alternate;
+}
+@-webkit-keyframes anime-happy {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  49% {
+    top: 10px;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  50% {
+    top: 10px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  100% {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+}
+@keyframes anime-happy {
+  0% {
+    transform: scaleX(1);
+  }
+  49% {
+    top: 10px;
+    transform: scaleX(1);
+  }
+  50% {
+    top: 10px;
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(-1);
+  }
+}
+/* anime-oops
+================================================== */
+.anime-oops__img {
+  display: inline-block;
+  position: relative;
+  opacity: 1;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  -webkit-animation: 2s linear infinite;
+  animation: 2s linear infinite;
+}
+.anime-oops .anime-oops__img:nth-child(1) {
+  opacity: 1;
+  -webkit-animation-name: anime-oops-on;
+  animation-name: anime-oops-on;
+}
+.anime-oops .anime-oops__img:nth-child(2) {
+  margin-left: -154px;
+  opacity: 0;
+  -webkit-animation-name: anime-oops-off;
+  animation-name: anime-oops-off;
+}
+@-webkit-keyframes anime-oops-on {
+  0% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes anime-oops-on {
+  0% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes anime-oops-off {
+  0% {
+    opacity: 0;
+  }
+  24% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes change-off {
+  0% {
+    opacity: 0;
+  }
+  24% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

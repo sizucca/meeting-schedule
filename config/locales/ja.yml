@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      booking: 会議室予約
+    attributes:
+      booking:
+        title:       タイトル
+        user_id:     登録者
+        facility_id: 会議室
+        start_time:  開始日時
+        end_time:    終了日時
+        memo:        メモ
+
+  activemodel:
+    models:
+      booking_search_form: 予約検索
+    attributes:
+      booking_search_form:
+        date_year:   日付
+        title:       タイトル
+        user_id:     登録者
+        facility_id: 会議室
+
+    errors:
+      messages:
+        # invalid_member_name: "は半角英数字で入力してください（_も使えます）。"
+

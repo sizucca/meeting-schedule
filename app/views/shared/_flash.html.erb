@@ -1,0 +1,27 @@
+<% flash ||= '' %>
+
+<% if flash.present? %>
+
+  <% if flash.notice %>
+    <div class="c-alert is-success flash-message">
+      <p class="c-alert__title">
+        <%= flash.notice %>
+      </p>
+      <p>
+        <%= image_tag("/images/sushiyuki/sushiyuki_24.png", size: "150x150", alt: "", class: "anime-happy")  %>
+      </p>
+    </div>
+  <% end %>
+
+  <% if flash.alert %>
+    <div class="c-alert is-warning flash-message">
+      <p class="c-alert__title">
+        <%= flash.alert %>
+      </p>
+      <p>
+        <%= image_tag("/images/sushiyuki/sushiyuki_56.png", size: "150x150", alt: "")  %>
+      </p>
+    </div>
+  <% end %>
+
+<% end %>

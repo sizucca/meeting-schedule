@@ -1,0 +1,90 @@
+<article class="l-contents">
+
+  <%= render "/shared/flash", flash: flash %>
+  <%= render "/shared/errors", obj: @booking %>
+
+  <h2 class="c-heading2">
+    予約登録
+  </h2>
+
+  <%= form_for(@booking, url: "create", html: {method: :post}) do |f| %>
+    <table class="c-table form-table">
+      <tbody>
+        <tr>
+          <th class="form-table__th">
+            <b class="form-table__label form-table__label--required">必須</b>
+            日時
+          </th>
+          <td>
+            <div class="form-table__line">
+              <%= f.label :start_time, "開始：" %>
+              <%= f.select :start_year, options_for_select(select_year_options(unit: "年", over_year: 5), @booking.try(:start_year)) %>
+              <%= f.select :start_month, options_for_select(select_month_options(unit: "月"), @booking.try(:start_month)) %>
+              <%= f.select :start_day, options_for_select(select_day_options(unit: "日"), @booking.try(:start_day)) %>
+              <%= f.select :start_hour, options_for_select(select_hour_options(unit: "時"), @booking.try(:start_hour)), {include_blank: "-- 時"} %>
+              <%= f.select :start_min, options_for_select(select_min_options(unit: "分", step: 15), @booking.try(:start_min)), {include_blank: "-- 分"} %>
+              <span class="form-error"></span>
+            </div>
+            <div class="form-table__line">
+              <%= f.label :end_time, "終了：" %>
+              <%= f.select :end_year, options_for_select(select_year_options(unit: "年", over_year: 5), @booking.try(:end_year)) %>
+              <%= f.select :end_month, options_for_select(select_month_options(unit: "月"), @booking.try(:end_month)) %>
+              <%= f.select :end_day, options_for_select(select_day_options(unit: "日"), @booking.try(:end_day)) %>
+              <%= f.select :end_hour, options_for_select(select_hour_options(unit: "時"), @booking.try(:end_hour)), {include_blank: "-- 時"} %>
+              <%= f.select :end_min, options_for_select(select_min_options(unit: "分", step: 15), @booking.try(:end_min)), {include_blank: "-- 分"} %>
+              <span class="form-error"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="form-table__th">
+            <span class="form-table__label">任意</span>
+            <%= f.label :title %>
+            <small class="form-table__limit">50文字以内</small>
+          </th>
+          <td>
+            <%= f.text_field :title, {maxlength: 50, placeholder: "無題", class: "c-textfield"} %>
+            <span class="form-error"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="form-table__th">
+            <b class="form-table__label form-table__label--required">必須</b>
+            <%= f.label :user_id %>
+          </th>
+          <td>
+            <%= f.select :user_id, options_for_select(select_user_options(@users), @booking.try(:user_id)) %>
+            <span class="form-error"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="form-table__th">
+            <b class="form-table__label form-table__label--required">必須</b>
+            <%= f.label :facility_id %>
+          </th>
+          <td>
+            <%= f.select :facility_id, options_for_select(select_facility_options(@facilities), @booking.try(:facility_id)) %>
+            <span class="form-error"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="form-table__th">
+            <span class="form-table__label">任意</span>
+            <%= f.label :memo %>
+            <small class="form-table__limit">100文字以内</small>
+          </th>
+          <td>
+            <%= f.text_area :memo, {maxlength: 100, class: "c-textfield c-textfield--textarea"} %>
+            <span class="form-error"></span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="submit-th">
+            <%= f.submit "登録する", {class: "c-btn c-btn--success submit-th__btn"} %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+
+</article>

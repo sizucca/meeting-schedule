@@ -1,0 +1,19 @@
+<% obj ||= '' %>
+
+<% unless obj.errors.empty? %>
+  <div class="c-alert is-error error-message">
+    <p class="c-alert__title">
+      エラーがあります
+    </p>
+
+    <ul class="error-message_list">
+      <% obj.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+
+    <p>
+      <%= image_tag("/images/sushiyuki/sushiyuki_54.png", size: "150x150", alt: "")  %>
+    </p>
+  </div>
+<% end %>

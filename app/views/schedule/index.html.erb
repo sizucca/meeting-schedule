@@ -1,0 +1,149 @@
+<article class="l-contents">
+  <div id="js-flash-messages">
+    <%= render "/shared/flash", flash: flash %>
+    <%= render "/shared/errors", obj: @search_form %>
+  </div>
+
+  <h2 class="c-heading2">
+    予約検索
+  </h2>
+
+  <%= form_for(@search_form, url: :root, html: {method: :get}) do |f| %>
+    <table class="c-table search-table">
+      <tbody>
+        <tr>
+          <th>
+            <%= f.label :date_year %>
+          </th>
+          <td>
+            <%= f.select :date_year, options_for_select(select_year_options(unit: "年", over_year: 5), @search_form.try(:date_year)) %>
+            <%= f.select :date_month, options_for_select(select_month_options(unit: "月"), @search_form.try(:date_month)) %>
+            <%= f.select :date_day, options_for_select(select_day_options(unit: "日"), @search_form.try(:date_day)) %>
+            <span class="form-error"></span>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :title %>
+          </th>
+          <td>
+            <%= f.text_field :title, {maxlength: 50, class: "c-textfield"} %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :user_id %>
+          </th>
+          <td>
+            <%= f.select :user_id, options_for_select(select_user_options(@users), @search_form.try(:user_id)), {include_blank: "-----"} %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= f.label :facility_id %>
+          </th>
+          <td>
+            <%= f.select :facility_id, options_for_select(select_facility_options(@facilities), @search_form.try(:facility_id)), {include_blank: "-----"} %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="submit-th">
+            <%= f.submit "検索する", {class: "c-btn c-btn--primary submit-th__btn"} %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% if @all_bookings && @all_bookings.size > 0 %>
+    <% if @result_bookings && @result_bookings.size > 0 %>
+
+      <p class="result-count">
+        <% if @result_bookings != @all_bookings %>
+          <b class="result-count__num js-booking-count"><%= @result_bookings.size %></b> 件
+          / 全 <b class="js-booking-count"><%= @all_bookings.size %></b> 件
+        <% else %>
+          全 <b class="result-count__num js-booking-count"><%= @all_bookings.size %></b> 件
+        <% end %>
+      </p>
+
+      <% @result_bookings.each do |booking| %>
+        <table class="result-table" id="js-booking-<%= booking.id %>">
+          <tbody>
+            <tr>
+              <th>
+                日時
+              </th>
+              <td>
+                <%= booking[:start_time].strftime("%Y/%m/%d %H:%M") %>
+                ～
+                <%= booking[:end_time].strftime("%Y/%m/%d %H:%M") %>
+              </td>
+              <td rowspan="5" class="result-table__form">
+                <%= link_to "削除", destroy_path(id: booking.id) , confirm: "本当に削除しますか？", method: :delete, remote: true %>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                タイトル
+              </th>
+              <td>
+                <%= booking.title.present? ? booking.title : content_tag(:span, "無題", class: "c-text-quiet") %>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                会議室
+              </th>
+              <td<% if booking.facility.status != FacilityStatus::ACTIVE %> class="status-inactive"<% end %>>
+                <%= facility_name(booking.facility) %>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                登録者
+              </th>
+              <td<% if booking.user.status != UserStatus::ACTIVE %> class="status-inactive"<% end %>>
+                <%= booking.user.family_name %>
+                <%= booking.user.first_name %>
+                <span class="user-name-kana">
+                （
+                  <%= booking.user.family_kana.to_hiragana %>
+                  <%= booking.user.first_kana.to_hiragana %>
+                  ）
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                メモ
+              </th>
+              <td>
+                <%= booking.memo.present? ? url_to_link(hbr(booking.memo)).html_safe : content_tag(:span, "-", class: "c-text-quiet") %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+
+    <% else %>
+      <div class="c-alert is-primary">
+        <p class="c-alert__title">
+          指定された条件での予約は見つかりませんでした。
+        </p>
+        <p class="anime-oops">
+          <%= image_tag("/images/sushiyuki/sushiyuki_69.png", size: "150x150", alt: "", class: "anime-oops__img")  %>
+          <%= image_tag("/images/sushiyuki/sushiyuki_70.png", size: "150x150", alt: "", class: "anime-oops__img")  %>
+        </pff
+      </div>
+    <% end %>
+  <% else %>
+    <div class="c-alert">
+      <p class="c-alert__title">
+        予約はありません。
+      </p>
+      <p><%= image_tag("/images/sushiyuki/sushiyuki_39.png", size: "150x150", alt: "")  %></p>
+    </div>
+  <% end %>
+
+</article>
